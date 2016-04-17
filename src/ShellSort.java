@@ -106,7 +106,7 @@ public class ShellSort {
 			n--;
 			h = odstepy[n];
 		}
-		bubbleSort(arr, size, h);
+		bubbleSort2(arr, size, h);
 	}
 	
 	public void shellSort3(int[] arr, int[] odstepy){
@@ -116,7 +116,7 @@ public class ShellSort {
 		int h = odstepy[n];
 		
 		while(h >= 2 && n >= 1){
-			bubbleSort(arr, size, h);
+			bubbleSort2(arr, size, h);
 			n--;
 			h = odstepy[n];
 		}
@@ -139,6 +139,26 @@ public class ShellSort {
 			for(int j = 0; j>=0 && j+h < n; j+=h){
 				if(arr[j] > arr [j+h]){
 					swap(arr, j, j+h);
+				}
+			}
+		}
+	}
+	
+	public void bubbleSort2(int[] arr, int n, int h){
+		int lastSwap = n-1;
+		
+		while(lastSwap>0){
+			int end = lastSwap;
+			lastSwap = 0;
+			for(int i = 0; i+h < end; i++){
+				if(arr[i] > arr [i+h]){
+					int temp = arr[i];
+					while(i+h < end && temp > arr[i+h]){
+						arr[i] = arr[i+h];
+						i=i+h;
+					}
+					lastSwap = i;
+					arr[i] = temp;
 				}
 			}
 		}
