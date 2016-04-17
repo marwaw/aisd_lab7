@@ -94,8 +94,6 @@ public class Test {
 		stop =System.currentTimeMillis();
 		System.out.println("Czas sortowania, wersja d: " + (stop-start) + " ms");
 		System.out.println("----------------------------------------");
-//		s.shellSort2(tab, h);
-//		s.wyswietl(tab);
 	}
 
 }
