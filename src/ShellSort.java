@@ -83,64 +83,44 @@ public class ShellSort {
 		return odstepy;
 	}
 	
-	public void shellSort1(int[] arr, int od){
+	public void shellSort1(int[] arr, int[] odstepy){
 		int size = arr.length;
-		int[] odstepy = chooseOption(od, size);
+//		int[] odstepy = chooseOption(od, size);
 		int n = odstepy.length-1;
 		int h = odstepy[n];
 		
 		while(h>=1 && n >= 0){
 			h = odstepy[n];
 			insertSort(arr,size,h);
-//			System.out.println("Po sortowaniu z h = "+h);
-//			wyswietl(arr);
 			n--;
 		}
 	}
 	
-	public void shellSort2(int[] arr, int od){
+	public void shellSort2(int[] arr, int[] odstepy){
 		int size = arr.length;
-		int[] odstepy = chooseOption(od, size);
 		int n = odstepy.length-1;
 		int h = odstepy[n];
 		
-		while(h>1 && n>=0){
-			h = odstepy[n];
-			if(h!=1){
-				insertSort(arr,size,h);
-//				System.out.println("Po sortowaniu insertSort z h = "+h);
-//				wyswietl(arr);
-			}
-			else{
-				bubbleSort(arr, size, h);
-//				System.out.println("Po sortowaniu b¹belkowym z h = "+h);
-//				wyswietl(arr);
-			}
+		while(h >= 2 && n >= 1){
+			insertSort(arr,size,h);
 			n--;
+			h = odstepy[n];
 		}
+		bubbleSort(arr, size, h);
 	}
 	
-	public void shellSort3(int[] arr, int od){
+	public void shellSort3(int[] arr, int[] odstepy){
 		int size = arr.length;
-		int[] odstepy = chooseOption(od, size);
 
 		int n = odstepy.length-1;
 		int h = odstepy[n];
 		
-		while (h > 1 && n>=0){
-			h = odstepy[n];
-			if(h!=1){
-				bubbleSort(arr, size, h);
-//				System.out.println("Po sortowaniu b¹belkowym z h = "+h);
-//				wyswietl(arr);
-			}
-			else{
-				insertSort(arr,size,h);
-//				System.out.println("Po sortowaniu insertSort z h = "+h);
-//				wyswietl(arr);
-			}
+		while(h >= 2 && n >= 1){
+			bubbleSort(arr, size, h);
 			n--;
+			h = odstepy[n];
 		}
+		insertSort(arr,size,h);
 	}
 	
 	public void insertSort(int[] arr, int n, int h){
@@ -156,7 +136,7 @@ public class ShellSort {
 	
 	public void bubbleSort(int[]arr, int n, int h){
 		for(int i = h; i < n; i++){
-			for(int j = i-h; j>=0 && j+h < n; j+=h){
+			for(int j = 0; j>=0 && j+h < n; j+=h){
 				if(arr[j] > arr [j+h]){
 					swap(arr, j, j+h);
 				}
